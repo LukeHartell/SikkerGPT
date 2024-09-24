@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="UTF-8">
+    <title>SikkerGPT</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Inkluderet Marked og DOMPurify -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@2.3.6/dist/purify.min.js"></script>
+</head>
+
+<body>
+    <div id="main-container">
+        <h1>SikkerGPT</h1>
+        <button id="info-btn">Hvad er SikkerGPT?</button>
+        <div id="info-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Om SikkerGPT</h2>
+                <p> SikkerGPT fungerer som ChatGPT, men dine beskeder bliver automatisk filtreret for at sikre, at de
+                    overholder GDPR-reglerne. </p>
+                <p> SikkerGPT er et Proof-of-Concept udviklet af Aabenraa Kommune. Formålet er at forhindre, at
+                    personfølsomme eller sensitive data
+                    utilsigtet sendes til OpenAI, firmaet bag ChatGPT. Hvis dine beskeder indeholder data, der kan være
+                    i strid med GDPR, bliver disse
+                    beskeder blokeret af SikkerGPT’s filtreringssystem, inden de forlader kommunens interne netværk.
+                </p>
+
+                <h3>Teknisk baggrund</h3>
+                <p> Filtreringssystemet er baseret på en lokal sprogmodel (LLM - Large Language Model), som er hostet
+                    internt på Aabenraa Kommunes
+                    egne servere. Den anvendte LLM er en tilpasset version af modellen <i>Gemma2:2b</i>. I modsætning
+                    til simple mønstergenkendelsesmetoder
+                    som regex eller nøgleordsgenkendelse, kan en LLM som Gemma2:2b analysere indholdet i kontekst og
+                    identificere skjulte eller implicitte
+                    mønstre i beskederne. Det gør det muligt for systemet at opdage følsomme data, der ikke nødvendigvis
+                    følger en fast struktur eller bruger
+                    bestemte nøgleord. </p>
+                <p> Når LLM'en læser dine beskeder, returnerer den enten 'True' eller 'False'. Hvis resultatet er
+                    'True', betyder det, at beskeden
+                    indeholder data, som kan klassificeres som personfølsomme i forhold til GDPR, og beskeden bliver
+                    derfor blokeret. Hvis resultatet
+                    er 'False', bliver beskeden sendt videre til OpenAI uden problemer. </p>
+
+                <h3>Begrænsninger i systemet</h3>
+                <p> Selvom systemet er designet til at filtrere beskeder på et højt niveau, er det ikke 100% sikkert.
+                    Der kan forekomme falske positiver,
+                    hvor ikke-sensitive beskeder fejlagtigt blokeres, og der kan også være falske negativer, hvor
+                    følsomme oplysninger undslipper
+                    filtret. Dette betyder, at selvom LLM’en er avanceret, kan den ikke garantere fuldstændig fejlfri
+                    filtrering. Systemet skal derfor
+                    betragtes som et ekstra sikkerhedslag, men det kan ikke erstatte en manuel gennemgang eller andre
+                    beskyttelsesforanstaltninger. </p>
+            </div>
+        </div>
+        <div id="chat-container">
+            <div id="chat-window"></div>
+            <div id="input-area">
+                <textarea id="prompt" placeholder="Skriv din besked her..." rows="1"></textarea>
+                <button id="send-btn">Send</button>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>

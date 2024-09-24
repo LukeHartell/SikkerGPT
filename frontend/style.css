@@ -1,0 +1,186 @@
+/* style.css */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #121212; /* Baggrund på hjemmeside*/
+    color: #e9e7ff; /*Default tekstfarve*/
+    overflow: hidden;
+}
+
+#main-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 50px;
+}
+
+#chat-container {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 200px);
+    border: none;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+#chat-window {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+    background-color: #3f3f3f; /* Baggrund bag beskeder*/
+}
+
+.message {
+    margin-bottom: 15px;
+    display: flex;
+}
+
+.message.user {
+    justify-content: flex-end;
+}
+
+.message.assistant {
+    justify-content: flex-start;
+}
+
+.message .content {
+    max-width: 70%;
+    padding: 10px;
+    border-radius: 10px;
+    word-wrap: pre-wrap;
+}
+
+.message.user .content {
+    background-color: #6158dd; /* Baggrundsfarve brugerbesked*/
+    color: #e9e7ff; /* Textfarve brugerbesked*/
+}
+
+.message.assistant .content {
+    background-color: #e9e7ff; /* Baggrundsfarve assistentbesked*/
+    color: #121212; /* Textfarve assistentbesked*/
+}
+
+.message.error .content {
+    background-color: #f8d7da; /* Baggrundsfarve afvist besked*/
+    color: #842029; /* Textfarve afvist besked*/
+}
+
+#input-area {
+    display: flex;
+    padding: 15px;
+    background-color: #282828;
+    border: none;
+}
+
+#prompt {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    height: auto;
+    min-height: 40px;
+    max-height: 150px; /* Set a maximum height */
+    border: none;
+    border-radius: 15px;
+    resize: none; /* Prevent manual resizing */
+    overflow-y: auto; /* Enable scrollbar when content exceeds max-height */
+    line-height: 1.5; /* Adjust line height for readability */
+    background-color: #e9e7ff; /* Match background with existing styles */
+    color: #121212; /* Match text color with existing styles */
+}
+
+
+#send-btn {
+    padding: 10px 20px;
+    margin-left: 10px;
+    font-size: 16px;
+    background-color: #6158dd;
+    color: #ffffff;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+#send-btn:hover {
+    background-color: #4842a7;
+}
+
+/* Modal stil */
+.modal {
+    display: none;
+    /* Skjult som standard */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 25px;
+    width: 80%;
+    max-width: 600px;
+    color: #121212;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+}
+
+#info-btn {
+    color: #717171;
+    border: none;
+    background: none;
+    margin-left: 10px;
+}
+
+#info-btn:hover {
+    cursor: pointer;
+}
+
+/* Scrollbar styles for WebKit browsers */
+#chat-window::-webkit-scrollbar,
+#prompt::-webkit-scrollbar {
+    width: 8px;
+}
+
+#chat-window::-webkit-scrollbar-track,
+#prompt::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#chat-window::-webkit-scrollbar-thumb,
+#prompt::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3); /* Adjust thumb color as needed */
+    border-radius: 4px;
+    border: none;
+}
+
+/* Scrollbar styles for Firefox */
+#chat-window,
+#prompt {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+}

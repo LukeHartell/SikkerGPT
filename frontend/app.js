@@ -39,7 +39,7 @@ function sendMessage() {
         content: prompt
     }];
 
-    fetch('http://127.0.0.1:8000/api/chat', {
+    fetch('http://192.168.1.66:8000/api/chat', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
